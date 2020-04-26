@@ -72,6 +72,9 @@ class Movie(models.Model):
     def get_absolute_url(self):
         return reverse('movie_url', kwargs={'slug': self.url})
 
+    def get_review(self):
+        return self.reviews_set.filter(parent__isnull=True)
+
     class Meta:
         verbose_name = "Фильм"
         verbose_name_plural = "Фильмы"
@@ -90,6 +93,7 @@ class MovieShots(models.Model):
     class Meta:
         verbose_name = "Кадр из фильма"
         verbose_name_plural = "Кадры из фильма"
+
 
 class RatingStar(models.Model):
     # Звезда рейтинга

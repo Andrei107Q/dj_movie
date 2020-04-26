@@ -40,7 +40,9 @@ class AddReview(View):
         form = ReviewForm(request.POST)
         movie = Movie.objects.get(id=pk)    # узнаем к какому фильму привузять отзыв
         if form.is_valid():     # проверяем валидность формы полученной с сайта
-            form =form.save(commit=False)   # приостановили сохранение формы
+            form = form.save(commit=False)   # приостановили сохранение формы
+            if request.POST.get("parent", None):
+                form.parent_id = int(request.POST.get("parent"))
             form.movie = movie     # передает id филтма
             form.save()
         return redirect(movie.get_absolute_url())   # формируем адрес страницы на которой оставили отзыв
