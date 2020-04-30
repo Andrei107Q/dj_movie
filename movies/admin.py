@@ -1,7 +1,18 @@
 from django.contrib import admin
+from django import forms
 from django.utils.safestring import mark_safe
 
 from .models import Category, Genre, Movie, MovieShots, Actor, Rating, RatingStar, Reviews
+
+from ckeditor_uploader.widgets import CKEditorUploadingWidget
+
+
+class MovieAdminForm(forms.ModelForm):
+    description = forms.CharField(label='Описание',  widget=CKEditorUploadingWidget())
+
+    class Meta:
+        model = Movie
+        fields = '__all__'
 
 
 @admin.register(Category)
@@ -26,6 +37,7 @@ class MovieShortsInline(admin.TabularInline): # TabularInline выводит в 
 
     get_image.short_description = "Изображение"
 
+
 @admin.register(Movie)
 class MovieAdmin(admin.ModelAdmin):
     list_display = ('id', 'title', 'category', 'url', 'draft')
@@ -36,6 +48,7 @@ class MovieAdmin(admin.ModelAdmin):
     save_on_top = True  # перенос кнопки сохранить вверх
     save_as = True  # при сохранении дкопирует старый обьект
     list_editable = ('draft',)  # редактирование не переходятя в детали
+    form = MovieAdminForm
     readonly_fields = ('get_image',)    # для отображения постера
     # fields = (('actors', 'directors', 'genres'), )   # кортеж для вывода в одну строку для редактирования
     fieldsets = (
