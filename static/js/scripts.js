@@ -1,6 +1,6 @@
 function ajaxSend(url, params) {
     // отправляем запрос
-    fetch('${url}?${params}', {  // запрос на сервер с помощью 'fetch'
+    fetch(`${url}?${params}`, {  // запрос на сервер с помощью 'fetch'
         method: 'GET',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
