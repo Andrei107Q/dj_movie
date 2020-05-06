@@ -144,7 +144,7 @@ class RatingStarAdmin(admin.ModelAdmin):
 
 @admin.register(Rating)
 class RatingAdmin(admin.ModelAdmin):
-    list_display = ('movie', 'ip')
+    list_display = ("star", "movie", "ip")
 
 
 admin.site.site_title = 'Django Movies'
