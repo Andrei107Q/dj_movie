@@ -12,7 +12,7 @@ function ajaxSend(url, params) {
 }
 
 // Filter movies
-const forms = document.querySelector('form[name=filter]'); // ищем форму по имени 'filter'
+/*const forms = document.querySelector('form[name=filter]'); // ищем форму по имени 'filter'
 
 forms.addEventListener('submit', function (e) { // когда вызываем метод 'submit' запускаем функцию
     // получаем данные из формы
@@ -20,7 +20,7 @@ forms.addEventListener('submit', function (e) { // когда вызываем �
     let url = this.action; // заносим информацию из формы в url
     let params = new URLSearchParams(new FormData(this)).toString();
     ajaxSend(url, params);
-});
+});*/
 
 function render(data) {
     // Рендер шаблона
